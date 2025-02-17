@@ -27,9 +27,11 @@ async function open_terminal(){
   await delay(1500);
   createText("You can run several commands:");
  
-  createCode("about me", "Who am i and what do i do.");
-  createCode("all", "See all commands.");
-  createCode("social -a", "All my social networks.");
+  createCode("about", "Who am I and what do I do.");
+  createCode("projects", "My github page with my projects.");
+  createCode("socials", "All my social networks.");
+  createCode("clear", "Clear the terminal.");
+  createCode("help", "See this screen");
 
   await delay(500);
   new_line();
@@ -68,29 +70,31 @@ function removeInput(){
 async function getInputValue(){
   
   const value = document.querySelector("input").value;
-  if(value === "all"){
+  if(value === "help"){
     trueValue(value);
     
-    createCode("projects", "My github page with my projects. Follow me there ;)");
-    createCode("about me", "Who am i and what do i do.");
-    createCode("social -a", "All my social networks.");
-    createCode("clear", "Clean the terminal.");
+    createCode("about", "Who am I and what do I do.");
+    createCode("projects", "My github page with my projects.");
+    createCode("socials", "All my social networks.");
+    createCode("clear", "Clear the terminal.");
+    createCode("help", "See this screen");
     
   }
   else if(value === "projects"){
     trueValue(value);
-    createText("<a href='https://github.com/heberleonard2' target='_blank'><i class='fab fa-github white'></i> github.com/heberleonard2</a>")
+    createText("<a href='https://github.com/skhtor' target='_blank'><i class='fab fa-github white'></i> github.com/skhtor</a>")
   }
-  else if(value === "about me"){
+  else if(value === "about"){
     trueValue(value);
-    createText("Oi, meu nome é Héber ;)")
-    createText("Desenvolvedor atualmente focado em todo o ecossistema Javascript. Utilizando principalmente a stack <span class='blue'>Node, React e React Native </span>por permitir criar aplicações de forma descomplicada e produtiva.")
+    createText("Hey! My name is Sassoon (Sass for short)")
+    createText("I am a DevOps/Platform Engineer based in Melbourne.")
+    createText("Technologies I've been working with recently: <span class='blue'>AWS, Kubernetes, Terraform, ArgoCD </span>".)
   }
-  else if(value === "social -a"){
+  else if(value === "socials"){
     trueValue(value);
-    createText("<a href='https://github.com/heberleonard2' target='_blank'><i class='fab fa-github white'></i> github.com/heberleonard2</a>")
-    createText("<a href='https://www.linkedin.com/in/heber-leonard/' target='_blank'><i class='fab fa-linkedin-in white'></i> linkedin.com/in/heber-leonard</a>")
-    createText("<a href='https://www.instagram.com/heber_leonard/' target='_blank'><i class='fab fa-instagram white'></i> instagram.com/heber_leonard</a>")
+    createText("<a href='https://github.com/skhtor' target='_blank'><i class='fab fa-github white'></i> github.com/skhtor</a>")
+    createText("<a href='https://www.linkedin.com/in/sass-k/' target='_blank'><i class='fab fa-linkedin-in white'></i> linkedin.com/in/sass-k</a>")
+    createText("<a href='https://www.instagram.com/zazzun/' target='_blank'><i class='fab fa-instagram white'></i> instagram.com/zazzun</a>")
   }
   else if(value === "social"){
     trueValue(value);

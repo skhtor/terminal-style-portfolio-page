@@ -39,10 +39,12 @@ function new_line(){
   const p = document.createElement("p");
   const span1 = document.createElement("span");
   const span2 = document.createElement("span");
+
   p.setAttribute("class", "path")
-  p.textContent = "# user";
+  p.textContent = "sass";
+
   span1.textContent = " in";
-  span2.textContent = " ~/heber-leonard";
+  span2.textContent = " ~";
   p.appendChild(span1);
   p.appendChild(span2);
   app.appendChild(p);
@@ -54,8 +56,9 @@ function new_line(){
   div.appendChild(i);
   div.appendChild(input);
   app.appendChild(div);
+
+  app.scrollTop = app.scrollHeight
   input.focus();
-  
 }
 
 function removeInput(){

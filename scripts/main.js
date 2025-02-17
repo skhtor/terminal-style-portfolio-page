@@ -88,7 +88,7 @@ async function getInputValue(){
     trueValue(value);
     createText("Hey! My name is Sassoon (Sass for short)")
     createText("I am a DevOps/Platform Engineer based in Melbourne.")
-    createText("Technologies I've been working with recently: <span class='blue'>AWS, Kubernetes, Terraform, ArgoCD </span>".)
+    createText("Technologies I've been working with recently: <span class='blue'>AWS, Kubernetes, Terraform, ArgoCD </span>.")
   }
   else if(value === "socials"){
     trueValue(value);

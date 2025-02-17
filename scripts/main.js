@@ -16,11 +16,22 @@ app.addEventListener("click", function(event){
   input.focus();
 })
 
+async function fetchMOTD() {
+    try {
+        const response = await fetch('https://api.quotable.io/random');
+        const data = await response.json();
+        createText(`"${data.content}" — ${data.author}`);
+    } catch (error) {
+        createText("There are no new messages, commander.");
+    }
+}
 
 async function open_terminal(){
   createText("Welcome");
-  await delay(700);
+  await delay(300);
   createText("Starting the server...");
+  await delay(300);
+  fetchMOTD();
   await delay(1500);
   createText("You can run several commands:");
  
@@ -87,7 +98,7 @@ async function getInputValue(){
     trueValue(value);
     createText("Hey! My name is Sassoon (Sass for short)")
     createText("I am a DevOps/Platform Engineer based in Melbourne.")
-    createText("Technologies I've been working with recently: <span class='blue'>AWS, Kubernetes, Terraform, ArgoCD </span>.")
+    createText("Technologies I've been working with recently: <span class='blue'>AWS, Kubernetes, Terraform, ArgoCD</span>.")
   }
   else if(value === "socials"){
     trueValue(value);

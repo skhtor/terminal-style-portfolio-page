@@ -5,11 +5,8 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
     
 app.addEventListener("keypress", async function(event){
   if(event.key === "Enter"){
-    await delay(150);
-   getInputValue();
-   
+    getInputValue();
     removeInput();
-    await delay(150);
     new_line();
   }
 });
@@ -33,7 +30,6 @@ async function open_terminal(){
   createCode("clear", "Clear the terminal.");
   createCode("help", "See this screen");
 
-  await delay(500);
   new_line();
 }
 

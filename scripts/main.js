@@ -101,6 +101,9 @@ async function getInputValue(){
     document.querySelectorAll("p").forEach(e => e.parentNode.removeChild(e));
     document.querySelectorAll("section").forEach(e => e.parentNode.removeChild(e));
   }
+  else if(value === ""){
+    return
+  }
   else{
     falseValue(value);
     createText(`command not found: ${value}`)

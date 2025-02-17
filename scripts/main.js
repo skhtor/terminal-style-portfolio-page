@@ -28,12 +28,12 @@ async function fetchMOTD() {
 
 async function open_terminal(){
   createText("Welcome");
-  await delay(300);
+  await delay(200);
   createText("Starting the server...");
-  await delay(300);
-  fetchMOTD();
-  await delay(1500);
+  await fetchMOTD();
+  await delay(1000);
   createText("You can run several commands:");
+  await delay(300);
  
   createCode("about", "Who am I and what do I do.");
   createCode("projects", "My github page with my projects.");
@@ -88,7 +88,6 @@ async function getInputValue(){
     createCode("socials", "All my social networks.");
     createCode("clear", "Clear the terminal.");
     createCode("help", "See this screen");
-    
   }
   else if(value === "projects"){
     trueValue(value);
@@ -110,7 +109,6 @@ async function getInputValue(){
     trueValue(value);
     createText("Didn't you mean: social -a?")
   }
-  
   else if(value === "clear"){
     document.querySelectorAll("p").forEach(e => e.parentNode.removeChild(e));
     document.querySelectorAll("section").forEach(e => e.parentNode.removeChild(e));
@@ -120,7 +118,7 @@ async function getInputValue(){
   }
   else{
     falseValue(value);
-    createText(`command not found: ${value}`)
+    createText(`sass.sh: command not found: ${value}`)
   }
 }
 

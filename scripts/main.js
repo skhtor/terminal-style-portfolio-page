@@ -1,8 +1,7 @@
 
 const app = document.querySelector("#app");
 const delay = ms => new Promise(res => setTimeout(res, ms));
-    
-    
+
 app.addEventListener("keypress", async function(event){
   if(event.key === "Enter"){
     getInputValue();
@@ -34,7 +33,7 @@ async function open_terminal(){
   await delay(1000);
   createText("You can run several commands:");
   await delay(300);
- 
+
   createCode("about", "Who am I and what do I do.");
   createCode("projects", "My github page with my projects.");
   createCode("socials", "All my social networks.");
@@ -46,7 +45,7 @@ async function open_terminal(){
 
 
 function new_line(){
-  
+
   const p = document.createElement("p");
   const span1 = document.createElement("span");
   const span2 = document.createElement("span");
@@ -64,6 +63,7 @@ function new_line(){
   const i = document.createElement("i");
   i.setAttribute("class", "fas fa-angle-right icone")
   const input = document.createElement("input");
+  input.setAttribute("id", "commandInput");
   div.appendChild(i);
   div.appendChild(input);
   app.appendChild(div);
@@ -123,7 +123,7 @@ async function getInputValue(){
 }
 
 function trueValue(value){
-  
+
   const div = document.createElement("section");
   div.setAttribute("class", "type2")
   const i = document.createElement("i");
@@ -137,7 +137,7 @@ function trueValue(value){
 }
 
 function falseValue(value){
-  
+
   const div = document.createElement("section");
   div.setAttribute("class", "type2")
   const i = document.createElement("i");
@@ -152,7 +152,7 @@ function falseValue(value){
 
 function createText(text, classname){
   const p = document.createElement("p");
-  
+
   p.innerHTML =
   text
   ;

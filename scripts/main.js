@@ -13,7 +13,37 @@ app.addEventListener("keypress", async function(event){
 app.addEventListener("click", function(event){
   const input = document.querySelector("input");
   input.focus();
-})
+});
+
+const commandMap = {
+  help: (value) => {
+    createCode("about", "Who am I and what do I do.");
+    createCode("projects", "My github page with my projects.");
+    createCode("socials", "All my social networks.");
+    createCode("clear", "Clear the terminal.");
+    createCode("help", "See this screen");
+  },
+  about: (value) => {
+    createText("Hey! My name is Sassoon (Sass for short)")
+    createText("I am a DevOps/Platform Engineer based in Melbourne.")
+    createText("Technologies I've been working with recently: <span class='blue'>AWS, Kubernetes, Terraform, ArgoCD</span>.")
+  },
+  projects: (value) => {
+    createText("<a href='https://github.com/skhtor' target='_blank'><i class='fab fa-github white'></i> github.com/skhtor</a>")
+  },
+  socials: (value) => {
+    createText("<a href='https://github.com/skhtor' target='_blank'><i class='fab fa-github white'></i> github.com/skhtor</a>")
+    createText("<a href='https://www.linkedin.com/in/sass-k/' target='_blank'><i class='fab fa-linkedin-in white'></i> linkedin.com/in/sass-k</a>")
+    createText("<a href='https://www.instagram.com/zazzun/' target='_blank'><i class='fab fa-instagram white'></i> instagram.com/zazzun</a>")
+  },
+  social: (value) => {
+    createText("Didn't you mean: socials?")
+  },
+  clear: () => {
+    document.querySelectorAll("p").forEach(e => e.parentNode.removeChild(e));
+    document.querySelectorAll("section").forEach(e => e.parentNode.removeChild(e));
+  },
+}
 
 async function fetchMOTD() {
     try {
@@ -79,46 +109,14 @@ function removeInput(){
 
 async function getInputValue(){
   
-  const value = document.querySelector("input").value;
-  if(value === "help"){
-    trueValue(value);
-    
-    createCode("about", "Who am I and what do I do.");
-    createCode("projects", "My github page with my projects.");
-    createCode("socials", "All my social networks.");
-    createCode("clear", "Clear the terminal.");
-    createCode("help", "See this screen");
-  }
-  else if(value === "projects"){
-    trueValue(value);
-    createText("<a href='https://github.com/skhtor' target='_blank'><i class='fab fa-github white'></i> github.com/skhtor</a>")
-  }
-  else if(value === "about"){
-    trueValue(value);
-    createText("Hey! My name is Sassoon (Sass for short)")
-    createText("I am a DevOps/Platform Engineer based in Melbourne.")
-    createText("Technologies I've been working with recently: <span class='blue'>AWS, Kubernetes, Terraform, ArgoCD</span>.")
-  }
-  else if(value === "socials"){
-    trueValue(value);
-    createText("<a href='https://github.com/skhtor' target='_blank'><i class='fab fa-github white'></i> github.com/skhtor</a>")
-    createText("<a href='https://www.linkedin.com/in/sass-k/' target='_blank'><i class='fab fa-linkedin-in white'></i> linkedin.com/in/sass-k</a>")
-    createText("<a href='https://www.instagram.com/zazzun/' target='_blank'><i class='fab fa-instagram white'></i> instagram.com/zazzun</a>")
-  }
-  else if(value === "social"){
-    trueValue(value);
-    createText("Didn't you mean: social -a?")
-  }
-  else if(value === "clear"){
-    document.querySelectorAll("p").forEach(e => e.parentNode.removeChild(e));
-    document.querySelectorAll("section").forEach(e => e.parentNode.removeChild(e));
-  }
-  else if(value === ""){
-    return
-  }
-  else{
-    falseValue(value);
-    createText(`sass.sh: command not found: ${value}`)
+  const input = document.querySelector("input").value.trim();
+  if(input === "") return;
+
+  if (commandMap[input]) {
+    trueValue(input);
+    commandMap[input](); // Execute the function from commandMap
+  } else {
+    falseValue(input);
   }
 }
 
@@ -137,17 +135,17 @@ function trueValue(value){
 }
 
 function falseValue(value){
-
   const div = document.createElement("section");
-  div.setAttribute("class", "type2")
+  div.setAttribute("class", "type2");
   const i = document.createElement("i");
-  i.setAttribute("class", "fas fa-angle-right icone error")
+  i.setAttribute("class", "fas fa-angle-right icone error");
   const mensagem = document.createElement("h2");
-  mensagem.setAttribute("class", "error")
+  mensagem.setAttribute("class", "error");
   mensagem.textContent = `${value}`;
   div.appendChild(i);
   div.appendChild(mensagem);
   app.appendChild(div);
+  createText(`sass.sh: command not found: ${value}`);
 }
 
 function createText(text, classname){
